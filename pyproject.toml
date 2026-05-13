@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "search-system"
+version = "1.0.0"
+description = "Hybrid search system for car brochures — Elasticsearch + Pinecone + Gemini LLM"
+authors = ["Narendra Mall"]
+readme = "README.md"
+packages = [
+    { include = "src" },
+    { include = "config" },
+]
+
+[tool.poetry.scripts]
+ingest = "scripts.ingest:main"
+chat = "scripts.chat_cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# Core
+fastapi = "^0.115.0"
+uvicorn = { version = "^0.30.0", extras = ["standard"] }
+python-dotenv = "^1.0.1"
+pydantic = "^2.9.0"
+pydantic-settings = "^2.5.0"
+
+# PDF Processing
+llama-parse = "^0.5.0"
+pymupdf = "^1.24.0"
+
+# Elasticsearch
+elasticsearch = "^8.15.0"
+
+# Google Gemini
+google-genai = "^1.0.0"
+
+# Pinecone (Phase 2)
+pinecone-client = "^5.0.0"
+
+# Utilities
+rich = "^13.8.0"
+tiktoken = "^0.7.0"
+tenacity = "^9.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+pytest-asyncio = "^0.24.0"
+ruff = "^0.6.0"
+mypy = "^1.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

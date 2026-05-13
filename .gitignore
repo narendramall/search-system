@@ -3,6 +3,9 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# LlamaParse cache
+.cache/
+
 # C extensions
 *.so
 
